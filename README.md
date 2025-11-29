@@ -17,7 +17,6 @@
 7. [Trabajo en equipo](#5-trabajo-en-equipo)
 8. [Conclusiones](#6-conclusiones)
 9. [Bibliografía](#7-bibliografía)
-10. [Licencia](#licencia)
 ---
 
 ### Datos generales
@@ -130,15 +129,14 @@
 
 ### 5. Trabajo en equipo
 
-| Tarea                     | Miembro  | Rol                       |
-| ------------------------- | -------- | ------------------------- |
-| Investigación teórica     | Alumno A | Documentar bases teóricas |
-| Diseño de la arquitectura | Alumno B | UML y esquemas de clases  |
-| Implementación del modelo | Alumno C | Código C++ de la NN       |
-| Pruebas y benchmarking    | Alumno D | Generación de métricas    |
-| Documentación y demo      | Alumno E | Tutorial y video demo     |
+| Tarea                     | Miembro  | Rol                                            |
+| ------------------------- | -------- | ---------------------------------------------- |
+| Investigación teórica     | José Ignacio Benalcázar Ferro | Documentar bases teóricas |
+| Diseño de la arquitectura | José Ignacio Benalcázar Ferro | UML y esquemas de clases  |
+| Implementación del modelo | José Ignacio Benalcázar Ferro | Código C++ de la NN       |
+| Pruebas y benchmarking    | José Ignacio Benalcázar Ferro | Generación de métricas    |
+| Documentación y demo      | José Ignacio Benalcázar Ferro | Tutorial y video demo     |
 
-> *Actualizar con tareas y nombres reales.*
 
 ---
 
@@ -154,11 +152,3 @@
 ### 7. Bibliografía
 
 > *Actualizar con bibliografia utilizada, al menos 4 referencias bibliograficas y usando formato IEEE de referencias bibliograficas.*
-
----
-
-### Licencia
-
-Este proyecto usa la licencia **MIT**. Ver [LICENSE](LICENSE) para detalles.
-
----
