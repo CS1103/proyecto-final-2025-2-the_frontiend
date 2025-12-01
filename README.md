@@ -30,14 +30,19 @@
 
 ### Requisitos e instalación
 
-1. **Compilador**: GCC 11 o superior
+1. **Compilador**: C++ 17 o superior, GCC 11 o superior
 2. **Dependencias**:
 
    * CMake 3.18+
    * Eigen 3.4
-   * \[Otra librería opcional]
+   * wget (Para la descarga del dataset)
 3. **Instalación**:
-
+    Paso 1: Descargar el dataset
+   ```bash
+   chmod +x download_dataset.sh 
+   ./download_dataset.sh
+   ````
+    Paso 2: Compilar el proyecto 
    ```bash
    git clone https://github.com/proyecto-final-2025-2-the_frontiend.git
    cd proyecto-final-2025-2-the_frontiend
@@ -89,12 +94,14 @@
   |    └──  heart_disease_train.cpp
   └── docs/
      ├── README.md
+     ├── heart.csv
      └── run.sh
   ```
 
 #### 2.2 Manual de uso y casos de prueba
 
-* **Cómo ejecutar**: `./build/neural_net_demo input.csv output.csv`
+* **Cómo ejecutar**: `# Desde el directorio build/`
+* ` ./heart_disease_train ../heart.csv`
 * **Casos de prueba**:
 
   * Test unitario de capa densa.
