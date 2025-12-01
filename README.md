@@ -4,7 +4,7 @@
 
 ### **Descripción**
 
-> Ejemplo: Implementación de una red neuronal multicapa en C++ para clasificación de dígitos manuscritos.
+> Ejemplo: Implementación de una red neuronal multicapa en C++ para la predicción de enfermedades cardíacas.
 
 ### Contenidos
 
@@ -21,7 +21,7 @@
 
 ### Datos generales
 
-* **Tema**: Redes Neuronales en AI
+* **Tema**: Redes Neuronales en Análisis y Proyección de enfermedades cardíacas en hospitales
 * **Grupo**: `The frontiend`
 * **Integrantes**:
 
@@ -39,8 +39,8 @@
 3. **Instalación**:
 
    ```bash
-   git clone https://github.com/EJEMPLO/proyecto-final.git
-   cd proyecto-final
+   git clone https://github.com/proyecto-final-2025-2-the_frontiend.git
+   cd proyecto-final-2025-2-the_frontiend
    mkdir build && cd build
    cmake ..
    make
