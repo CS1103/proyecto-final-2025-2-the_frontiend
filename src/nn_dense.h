@@ -6,7 +6,6 @@
 #define PROG3_NN_FINAL_PROJECT_V2025_01_DENSE_H
 
 #pragma once
-#include <functional>
 #include <stdexcept>
 #include "nn_interfaces.h"
 
@@ -42,7 +41,6 @@ Dense(const size_t in_features, const size_t out_features,
         init_w_fun(W_);
         init_b_fun(b_);
     }
-
 
     Tensor2 forward(const Tensor2& X) override {
         X_ = X;
@@ -106,7 +104,7 @@ Dense(const size_t in_features, const size_t out_features,
         }
 
         Tensor2 dX(typename Tensor2::shape_type{ static_cast<size_t>(batch),
-                                        static_cast<size_t>(out_features) });
+                                        static_cast<size_t>(in_features) });
 
         for (size_t b = 0; b < batch; ++b) {
             for (size_t i = 0; i < in_features; ++i) {
@@ -124,7 +122,6 @@ Dense(const size_t in_features, const size_t out_features,
     void update_params(IOptimizer<T>& optimizer) override {
         optimizer.update(W_, dW_);
         optimizer.update(b_, db_);
-        optimizer.step();
     }
 
     const Tensor2& weights() const { return W_; }

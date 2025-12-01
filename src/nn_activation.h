@@ -35,10 +35,9 @@ namespace utec::neural_network {
     Tensor2 backward(const Tensor2& gradients) override {
       Tensor2 dx = gradients;
       auto it_dx = dx.begin();
-      auto it_last = last_input_.begin();
+      auto it_last = last_input_.cbegin();
       for (; it_dx != dx.end(); ++it_dx, ++it_last) {
-        if (*it_last > static_cast<T>(0)) {
-        } else {
+        if (*it_last <= static_cast<T>(0)) {
           *it_dx = static_cast<T>(0);
         }
       }

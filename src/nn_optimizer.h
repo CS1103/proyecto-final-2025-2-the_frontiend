@@ -7,7 +7,6 @@
 
 #pragma once
 #include <cmath>
-#include <vector>
 #include <unordered_map>
 #include <stdexcept>
 #include "nn_interfaces.h"
@@ -48,7 +47,7 @@ public:
                   T beta2 = static_cast<T>(0.999),
                   T epsilon = static_cast<T>(1e-8))
         : lr_(learning_rate), beta1_(beta1), beta2_(beta2),
-          epsilon_(epsilon), t_(0)
+          epsilon_(epsilon), t_(1)
     {}
 
     void update(Tensor2& params, const Tensor2& grads) override {
@@ -62,8 +61,6 @@ public:
 
         if (m.size() == 0) m = Tensor2(shape);
         if (v.size() == 0) v = Tensor2(shape);
-
-        t_ += 1;
         const T one = static_cast<T>(1);
         const T lr_t = lr_ * std::sqrt(one - std::pow(beta2_, t_)) / (one - std::pow(beta1_, t_));
 
@@ -80,7 +77,9 @@ public:
     }
 
 
-    void step() override {}
+    void step() override {
+        t_ += 1;
+    }
 
 private:
     T lr_;

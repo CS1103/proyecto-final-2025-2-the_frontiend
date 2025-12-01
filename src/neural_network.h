@@ -52,6 +52,10 @@ public:
             throw std::runtime_error("NeuralNetwork::train - no layers added");
         }
 
+        if (X.shape()[0] != Y.shape()[0]) {
+            throw std::invalid_argument("X and Y must have same number of samples");
+        }
+
         OptimizerType<T> optimizer(learning_rate);
 
         const size_t n_samples = X.shape()[0];
@@ -63,17 +67,20 @@ public:
 
         for (size_t epoch = 0; epoch < epochs; ++epoch) {
             T epoch_loss = static_cast<T>(0);
+            size_t total_samples = 0;
 
             for (size_t batch = 0; batch < n_batches; ++batch) {
                 const size_t start = batch * batch_size;
                 const size_t end = std::min(start + batch_size, n_samples);
                 const size_t current_batch_size = end - start;
+                epoch_loss += epoch_loss * current_batch_size;
+                total_samples += current_batch_size;
 
                 auto x_shape = typename Tensor2::shape_type{ current_batch_size, X.shape()[1] };
                 Tensor2 X_batch(x_shape);
 
                 auto y_shape = typename Tensor2::shape_type{ current_batch_size, Y.shape()[1] };
-                Tensor2 Y_batch(x_shape);
+                Tensor2 Y_batch(y_shape);
 
                 for (size_t i = 0; i < current_batch_size; ++i) {
                     for (size_t j = 0; j < X.shape()[1]; ++j)
@@ -99,6 +106,7 @@ public:
 
                 optimizer.step();
             }
+            epoch_loss / static_cast<T>(total_samples);
 
             if (epoch % 500 == 0 || epoch == epochs - 1) {
                 std::cout << "Epoch " << epoch + 1
@@ -112,8 +120,5 @@ public:
 private:
     std::vector<std::unique_ptr<ILayer<T>>> layers_;
 };
-
 }
-
-
 #endif //PROG3_NN_FINAL_PROJECT_V2025_01_NEURAL_NETWORK_H

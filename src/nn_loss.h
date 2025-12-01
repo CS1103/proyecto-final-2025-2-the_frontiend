@@ -94,7 +94,7 @@ public:
         const long double invN = 1.0L / static_cast<long double>(N);
         for (size_t i = 0; i < N; ++i, ++itp, ++itt, ++ig) {
             long double p = std::clamp(static_cast<long double>(*itp), static_cast<long double>(eps_), static_cast<long double>(1.0L - eps_));
-            const double y = static_cast<long double>(*itt);
+            const long double y = static_cast<long double>(*itt);
             const long double d = ( - (y / p) + ((1.0L - y) / (1.0L - p)) );
             *ig = static_cast<T>(invN * d);
         }
