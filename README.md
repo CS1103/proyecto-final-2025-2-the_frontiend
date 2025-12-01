@@ -4,7 +4,7 @@
 
 ### **Descripción**
 
-> Ejemplo: Implementación de una red neuronal multicapa en C++ para clasificación de dígitos manuscritos.
+> Ejemplo: Implementación de una red neuronal multicapa en C++ para la predicción de enfermedades cardíacas.
 
 ### Contenidos
 
@@ -21,7 +21,7 @@
 
 ### Datos generales
 
-* **Tema**: Redes Neuronales en AI
+* **Tema**: Redes Neuronales en Análisis y Proyección de enfermedades cardíacas en hospitales
 * **Grupo**: `The frontiend`
 * **Integrantes**:
 
@@ -30,17 +30,22 @@
 
 ### Requisitos e instalación
 
-1. **Compilador**: GCC 11 o superior
+1. **Compilador**: C++ 17 o superior, GCC 11 o superior
 2. **Dependencias**:
 
    * CMake 3.18+
    * Eigen 3.4
-   * \[Otra librería opcional]
+   * wget (Para la descarga del dataset)
 3. **Instalación**:
-
+    Paso 1: Descargar el dataset
    ```bash
-   git clone https://github.com/EJEMPLO/proyecto-final.git
-   cd proyecto-final
+   chmod +x download_dataset.sh 
+   ./download_dataset.sh
+   ````
+    Paso 2: Compilar el proyecto 
+   ```bash
+   git clone https://github.com/proyecto-final-2025-2-the_frontiend.git
+   cd proyecto-final-2025-2-the_frontiend
    mkdir build && cd build
    cmake ..
    make
@@ -72,15 +77,31 @@
   proyecto-final/
   ├── src/
   │   ├── layers/
+  |   │    ├── neural_network.h
+  │   |    ├── nn_activation.h
+  |   │    ├── nn_dense.h
+  |   │    ├── nn_loss.h
+  |   │    └── tensor.h
+  │   ├── loader/
+  |   │    └── data_loader.h
   │   ├── optimizers/
+  |   │    └── nn_optimizer.h
+  │   ├── train/
+  |   │    └──  evaluation.h
+  |   │    
   │   └── main.cpp
   ├── tests/
+  |    └──  heart_disease_train.cpp
   └── docs/
+     ├── README.md
+     ├── heart.csv
+     └── run.sh
   ```
 
 #### 2.2 Manual de uso y casos de prueba
 
-* **Cómo ejecutar**: `./build/neural_net_demo input.csv output.csv`
+* **Cómo ejecutar**: `# Desde el directorio build/`
+* ` ./heart_disease_train ../heart.csv`
 * **Casos de prueba**:
 
   * Test unitario de capa densa.
