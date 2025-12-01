@@ -72,10 +72,24 @@
   proyecto-final/
   ├── src/
   │   ├── layers/
+  |   │    ├── neural_network.h
+  │   |    ├── nn_activation.h
+  |   │    ├── nn_dense.h
+  |   │    ├── nn_loss.h
+  |   │    └── tensor.h
+  │   ├── loader/
+  |   │    └── data_loader.h
   │   ├── optimizers/
+  |   │    └── nn_optimizer.h
+  │   ├── train/
+  |   │    └──  evaluation.h
+  |   │    
   │   └── main.cpp
   ├── tests/
+  |    └──  heart_disease_train.cpp
   └── docs/
+     ├── README.md
+     └── run.sh
   ```
 
 #### 2.2 Manual de uso y casos de prueba
