@@ -43,14 +43,12 @@ public:
         data_.resize(total);
     }
 
-    // Constructor con shape_type: Tensor(std::array<size_t, Rank>{...})
     explicit Tensor(const shape_type& shape) : shape_(shape) {
         size_t total = 1;
         for (auto d : shape_) total *= d;
         data_.resize(total);
     }
 
-    // Métodos de acceso
     shape_type shape() const { return shape_; }
     [[nodiscard]] size_t size() const { return data_.size(); }
 
@@ -58,7 +56,6 @@ public:
         std::fill(data_.begin(), data_.end(), value);
     }
 
-    // Operador de indexación (no-const)
     template<typename... Idx>
     T& operator()(Idx... idxs) {
         std::array<size_t, Rank> idx = { static_cast<size_t>(idxs)... };
@@ -71,7 +68,6 @@ public:
         return data_[pos];
     }
 
-    // Operador de indexación (const) - BUG #3 CORREGIDO
     template<typename... Idx>
     const T& operator()(Idx... idxs) const {
         std::array<size_t, Rank> idx = { static_cast<size_t>(idxs)... };
@@ -84,7 +80,6 @@ public:
         return data_[pos];
     }
 
-    // Iteradores
     using iterator = typename std::vector<T>::iterator;
     using const_iterator = typename std::vector<T>::const_iterator;
 
@@ -97,7 +92,6 @@ public:
     const_iterator cbegin() const noexcept { return data_.cbegin(); }
     const_iterator cend() const noexcept { return data_.cend(); }
 
-    // Asignación desde initializer_list
     Tensor& operator=(std::initializer_list<T> il) {
         if (il.size() != data_.size())
             throw std::invalid_argument("Data size does not match tensor size");
@@ -105,7 +99,7 @@ public:
         return *this;
     }
 
-    // Reshape
+
     template<typename... Dims>
     void reshape(Dims... dims) {
         static_assert((std::is_integral_v<Dims> && ...), "reshape dimensions must be integral");
@@ -123,7 +117,6 @@ public:
         shape_ = new_shape;
     }
 
-    // Operaciones aritméticas entre tensores
     Tensor operator+(const Tensor& other) const {
         Tensor result(broadcast_shape(*this, other));
         for (size_t i = 0; i < result.data_.size(); ++i)
@@ -145,7 +138,6 @@ public:
         return result;
     }
 
-    // Operaciones con escalares (usando tipo T en lugar de int)
     Tensor operator+(const T& s) const {
         Tensor result = *this;
         for (auto& x : result.data_) x += s;
@@ -170,7 +162,6 @@ public:
         return result;
     }
 
-    // Operadores friend para escalar a la izquierda
     friend Tensor operator+(const T& s, const Tensor& t) {
         return t + s;
     }
@@ -191,14 +182,12 @@ public:
         return result;
     }
 
-    // Operator de salida
     friend std::ostream& operator<<(std::ostream& os, const Tensor& t) {
         print_recursive(os, t.data_, t.shape_, 0, 0);
         return os;
     }
 
 private:
-    // Función auxiliar para impresión recursiva
     static void print_recursive(std::ostream& os,
                                 const std::vector<T>& data,
                                 const std::array<size_t, Rank>& shape,
@@ -224,7 +213,6 @@ private:
         }
     }
 
-    // Funciones auxiliares para broadcasting
     static shape_type broadcast_shape(const Tensor& A, const Tensor& B) {
         shape_type result{};
         for (size_t i = 0; i < Rank; ++i) {
@@ -253,7 +241,6 @@ private:
     }
 };
 
-// Funciones globales
 template<typename T, size_t Rank>
 Tensor<T, Rank> transpose_2d(const Tensor<T, Rank>& t) {
     static_assert(Rank == 2, "transpose_2d only works for 2D tensors");

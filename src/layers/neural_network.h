@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include "nn_loss.h"
 #include "nn_interfaces.h"
-#include "nn_optimizer.h"
+#include "optimizer/nn_optimizer.h"
 
 namespace utec::neural_network {
     template <typename T>
