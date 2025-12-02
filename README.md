@@ -35,14 +35,16 @@
    * Eigen 3.4
    * wget (Para la descarga del dataset)
 3. **Instalación**:
-    Paso 1: Descargar el dataset desde un repositorio público
+    Paso 1: Clonar repositorio que contiene el dataset
    ```bash
-   wget https://raw.githubusercontent.com/sharmaroshan/Heart-UCI-Dataset/master/heart.csv
+   git clone https://github.com/sharmaroshan/Heart-UCI-Dataset.git
+   cd Heart-UCI-Dataset
    ````
-   Paso 2: Verificar el dataset
+   Paso 2: Verificar el dataset y ajustar el formato
    ```bash
    wc -l heart.csv  # Debe mostrar ~304 líneas (303 datos + 1 header)
    head -1 heart.csv  # Debe mostrar los nombres de columnas
+   head -5 heart.csv
    ````
     Paso 3: Compilar el proyecto 
    ```bash
@@ -51,6 +53,8 @@
    mkdir build && cd build
    cmake .. -DCMAKE_BUILD_TYPE=Release
    make j4
+   cd build
+   ./heart_disease_train ../heart.csv
    ```
 ---
 
@@ -114,28 +118,24 @@
 * **Estructura de carpetas**:
   
   ```
-  proyecto-final/
-  ├── src/
-  │   ├── layers/
-  |   │    ├── neural_network.h
-  │   |    ├── nn_activation.h
-  |   │    ├── nn_dense.h
-  |   │    ├── nn_loss.h
-  |   │    └── tensor.h
-  │   ├── loader/
-  |   │    └── data_loader.h
-  │   ├── optimizers/
-  |   │    └── nn_optimizer.h
-  │   ├── train/
-  |   │    └──  evaluation.h
-  |   │    
-  │   └── main.cpp
+  proyecto-final-2025-2-the_frontiend/
+  ├── include/
+  │   ├── tensor.h                    
+  │   ├── neural_network.h            
+  │   ├── nn_interfaces.h             
+  │   ├── nn_dense.h
+  │   ├── nn_activation.h             
+  │   ├── nn_loss.h                   
+  │   ├── nn_optimizer.h              
+  │   ├── data_loader.h               
+  │   └── evaluation.h                
+  ├── heart_disease_train.cpp        
   ├── tests/
-  |    └──  heart_disease_train.cpp
-  └── docs/
-     ├── README.md
-     ├── heart.csv
-     └── run.sh
+  │   └── test_suite.cpp              
+  ├── CMakeLists.txt                  
+  ├── download_dataset.sh             
+  ├── heart.csv                       
+  └── README.md                       
   ```
 
 #### 2.2 Manual de uso y casos de prueba
@@ -177,17 +177,29 @@ Justificación:
 
 * **Métricas de ejemplo**:
 
-  * Iteraciones: 1000 épocas.
-  * Tiempo total de entrenamiento: 2m30s.
-  * Precisión final: 92.5%.
-* **Ventajas/Desventajas**:
+  * Iteraciones: 5000 épocas.
+  * Tiempo total de entrenamiento: 1m20s.
+  * Precisión final: 82.57%.
+* **Ventajas**:
 
-  * * Código ligero y dependencias mínimas.
-  * – Sin paralelización, rendimiento limitado.
+  * Control total y comprensión profunda
+  * Sin dependencias externas
+  * Eficiencia de memoria
+  * Template programming avanzado
+  * Patrones profesionales
+  * Rendimiento competitivo en datasets pequeños
+ 
+  * **Desventajas**:
+  * Escalabilidad limitada (OpenMP, GPU)
+  * Funcionalidad limitada (Extender gradualmente)
+  * Debugging complejo (Tests exhaustivos)
+  * Falta de herramientas (Scripts externos)
+  * Operaciones subóptimas (Optimizar con compiler flags)
 * **Mejoras futuras**:
 
-  * Uso de BLAS para multiplicaciones (Justificación).
-  * Paralelizar entrenamiento por lotes (Justificación).
+  * Implementar logging detallado de gradientes
+  * Crear visualizaciones simples con Python para una mayor apreciación de los datos y del rendimiento de la red en distintos escenarios de datos
+  * Tests unitarios exhaustivos para poner a prueba la adaptabilidad del modelo y sus componentes para detectar todas las excepciones posibles y corregirlas en consecuencia
 
 ---
 
@@ -206,10 +218,16 @@ Justificación:
 
 ### 6. Conclusiones
 
-* **Logros**: Implementar NN desde cero, validar en dataset de ejemplo.
-* **Evaluación**: Calidad y rendimiento adecuados para propósito académico.
-* **Aprendizajes**: Profundización en backpropagation y optimización.
-* **Recomendaciones**: Escalar a datasets más grandes y optimizar memoria.
+Se logró realizar la implementación completa desde cero, incluyendo los siguientes componentes:
+- Red neuronal funcional sin dependencias externas
+- Backpropagation manual con cálculo correcto de gradientes
+- Optimizadores SGD y Adam implementados correctamente
+
+La Red Neuronal es efectiva para la predicción de datos en áreas como la medicina, con un dataset real de enfermedad cardíaca (303 pacientes), y con estadísticas relativamente favorables
+(Accuracy competitivo: 80-90% (literatura: 85-93%))
+
+La Optimización SGD Demostró ser más efectiva que Adam, con mayor estabilidad y menos propenso a overfitting, pese a que sea más lento. Se recomienda empezar con SGD para baseline, posteriormente experimentar con Adam.
+
 
 ---
 
@@ -219,5 +237,3 @@ Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representati
 Cong, S., & Zhou, Y. (2023). A review of convolutional neural network architectures and their optimizations. Artificial Intelligence Review, 56(3), 1905-1969. https://doi.org/10.1007/s10462-022-10213-5
 Bredikhin, A. I. (2019). Training algorithms for convolutional neural networks. Yugra State University Bulletin, 15(1), 41-54. https://doi.org/10.17816/byusu20190141-54
 Galván, E., & Mooney, P. (2021). Neuroevolution in deep neural networks: Current trends and future challenges. IEEE Transactions on Artificial Intelligence, 2(6), 476-493. https://doi.org/10.1109/TAI.2021.3067574
-
-
