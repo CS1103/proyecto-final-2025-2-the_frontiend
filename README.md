@@ -164,7 +164,7 @@ Justificación:
 
 ### 3. Ejecución
 
-> **Demo de ejemplo**: Video/demo alojado en `docs/demo.mp4`.
+> **Demo de ejemplo**: Video/demo alojado en `Demo_NN_Proyecto.mp4`.
 > Pasos:
 >
 > 1. Preparar datos de entrenamiento (formato CSV).
