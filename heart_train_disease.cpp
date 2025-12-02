@@ -44,7 +44,7 @@ inline int train(int argc, char* argv[]) {
     constexpr size_t BATCH_SIZE = 32;
     constexpr double LEARNING_RATE = 0.01;
     constexpr double TEST_RATIO = 0.3;
-    constexpr bool USE_ADAM = false;
+    constexpr bool USE_ADAM = true;
 
     print_header("CONFIGURATION");
     std::cout << "Dataset:       " << dataset_path << std::endl;

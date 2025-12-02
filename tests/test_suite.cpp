@@ -341,7 +341,6 @@ void test_xor_problem() {
         std::cout << "Entrenando XOR con SGD..." << std::endl;
         nn.train<BCELoss, SGD>(X, Y, 5000, 4, 0.5);
 
-        // Predecir
         auto predictions = nn.predict(X);
 
         std::cout << "\nResultados:" << std::endl;
