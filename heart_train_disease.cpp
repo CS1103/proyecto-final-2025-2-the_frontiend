@@ -134,9 +134,7 @@ inline int train(int argc, char* argv[]) {
     Evaluator::print_sample_predictions(y_test, y_test_pred, 15);
 
 
-    double best_threshold = Evaluator::find_best_threshold(y_test, y_test_pred);
-
-    if (best_threshold != 0.5) {
+    if (double best_threshold = Evaluator::find_best_threshold(y_test, y_test_pred); best_threshold != 0.5) {
         std::cout << "\nRe-evaluating with best threshold..." << std::endl;
         Metrics optimized_metrics = Evaluator::evaluate(y_test, y_test_pred, best_threshold);
         optimized_metrics.print();
