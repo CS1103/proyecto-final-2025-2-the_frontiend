@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include "nn_loss.h"
 #include "nn_interfaces.h"
-#include "optimizer/nn_optimizer.h"
+#include "nn_optimizer.h"
 
 namespace utec::neural_network {
     template <typename T>
@@ -65,6 +65,7 @@ public:
 
         const size_t n_batches = (n_samples + batch_size - 1) / batch_size;
 
+
         for (size_t epoch = 0; epoch < epochs; ++epoch) {
             T epoch_loss = static_cast<T>(0);
             size_t total_samples = 0;
@@ -73,7 +74,6 @@ public:
                 const size_t start = batch * batch_size;
                 const size_t end = std::min(start + batch_size, n_samples);
                 const size_t current_batch_size = end - start;
-                epoch_loss += epoch_loss * current_batch_size;
                 total_samples += current_batch_size;
 
                 auto x_shape = typename Tensor2::shape_type{ current_batch_size, X.shape()[1] };
@@ -90,7 +90,6 @@ public:
                 }
 
                 Tensor2 Y_pred = predict(X_batch);
-
                 LossType<T> loss(Y_pred, Y_batch);
                 epoch_loss += loss.loss();
 

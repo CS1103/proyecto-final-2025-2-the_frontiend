@@ -9,7 +9,7 @@
 #include <cmath>
 #include <unordered_map>
 #include <stdexcept>
-#include "layers/nn_interfaces.h"
+#include "nn_interfaces.h"
 
 namespace utec::neural_network {
 

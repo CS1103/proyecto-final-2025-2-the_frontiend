@@ -9,7 +9,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include "layers/tensor.h"
+#include "include/tensor.h"
 
 namespace utec::evaluation {
 
@@ -22,9 +22,9 @@ struct ConfusionMatrix {
     size_t false_negative = 0;
 
     void print() const {
-        std::cout << "\n╔════════════════════════════════════╗" << std::endl;
-        std::cout << "║      CONFUSION MATRIX              ║" << std::endl;
-        std::cout << "╚════════════════════════════════════╝" << std::endl;
+        std::cout << "\n╔------------------------------------╗" << std::endl;
+        std::cout << "|      CONFUSION MATRIX              |" << std::endl;
+        std::cout << "╚------------------------------------╝" << std::endl;
         std::cout << "                 Predicted" << std::endl;
         std::cout << "               Neg      Pos" << std::endl;
         std::cout << "Actual  Neg  " << std::setw(5) << true_negative
@@ -44,9 +44,9 @@ struct Metrics {
     ConfusionMatrix cm;
 
     void print() const {
-        std::cout << "\n╔════════════════════════════════════╗" << std::endl;
-        std::cout << "║      EVALUATION METRICS            ║" << std::endl;
-        std::cout << "╚════════════════════════════════════╝" << std::endl;
+        std::cout << "\n╔------------------------------------╗" << std::endl;
+        std::cout << "|      EVALUATION METRICS            |" << std::endl;
+        std::cout << "╚------------------------------------╝" << std::endl;
         std::cout << std::fixed << std::setprecision(4);
         std::cout << "Accuracy:    " << (accuracy * 100) << "%" << std::endl;
         std::cout << "Precision:   " << (precision * 100) << "%" << std::endl;
@@ -138,9 +138,9 @@ public:
 
     static void print_sample_predictions(const Tensor2& y_true, const Tensor2& y_pred,
                                         size_t n_samples = 10) {
-        std::cout << "\n╔════════════════════════════════════╗" << std::endl;
-        std::cout << "║      SAMPLE PREDICTIONS            ║" << std::endl;
-        std::cout << "╚════════════════════════════════════╝" << std::endl;
+        std::cout << "\n╔------------------------------------╗" << std::endl;
+        std::cout << "|      SAMPLE PREDICTIONS            |" << std::endl;
+        std::cout << "╚------------------------------------╝" << std::endl;
         std::cout << std::fixed << std::setprecision(4);
         std::cout << "True Label | Predicted Prob | Predicted Label | Correct?" << std::endl;
         std::cout << "-----------------------------------------------------------" << std::endl;
@@ -182,9 +182,9 @@ public:
     }
 
     static void print_roc_points(const Tensor2& y_true, const Tensor2& y_pred) {
-        std::cout << "\n╔════════════════════════════════════╗" << std::endl;
-        std::cout << "║      ROC CURVE POINTS              ║" << std::endl;
-        std::cout << "╚════════════════════════════════════╝" << std::endl;
+        std::cout << "\n╔------------------------------------╗" << std::endl;
+        std::cout << "|      ROC CURVE POINTS              |" << std::endl;
+        std::cout << "╚------------------------------------╝" << std::endl;
         std::cout << "Threshold | TPR (Recall) | FPR" << std::endl;
         std::cout << "---------------------------------------" << std::endl;
 

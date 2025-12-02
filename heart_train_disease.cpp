@@ -6,14 +6,14 @@
 #include <memory>
 #include <chrono>
 #include <iomanip>
-#include "layers/tensor.h"
-#include "layers/neural_network.h"
-#include "layers/nn_activation.h"
-#include "layers/nn_loss.h"
-#include "layers/nn_dense.h"
-#include "optimizer/nn_optimizer.h"
-#include "loader/data_loader.h"
-#include "train/evaluation.h"
+#include "include/tensor.h"
+#include "include/neural_network.h"
+#include "include/nn_activation.h"
+#include "include/nn_loss.h"
+#include "include/nn_dense.h"
+#include "include/nn_optimizer.h"
+#include "include/data_loader.h"
+#include "include/evaluation.h"
 
 
 template<typename T, size_t Rank>
@@ -24,21 +24,23 @@ using namespace utec::evaluation;
 
 
 
-void print_header(const std::string& text) {
-    std::cout << "\n╔════════════════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║  " << std::left << std::setw(52) << text << "║" << std::endl;
-    std::cout << "╚════════════════════════════════════════════════════════╝" << std::endl;
+inline void print_header(const std::string& text) {
+    std::cout << "\n----------------------------------------------------------" << std::endl;
+    std::cout << "|  " << std::left << std::setw(52) << text << "  |" << std::endl;
+    std::cout << "|-----------------------------------------------------------|" << std::endl;
 }
 
-int train(int argc, char* argv[]) {
-    std::cout << "╔════════════════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║       HEART DISEASE PREDICTION - NEURAL NETWORK        ║" << std::endl;
-    std::cout << "║                        UTEC                            ║" << std::endl;
-    std::cout << "╚════════════════════════════════════════════════════════╝" << std::endl;
+inline int train(int argc, char* argv[]) {
+    std::cout << "|-----------------------------------------------------------|" << std::endl;
+    std::cout << "|       HEART DISEASE PREDICTION - NEURAL NETWORK           |" << std::endl;
+    std::cout << "|                        UTEC                               |" << std::endl;
+    std::cout << "|-----------------------------------------------------------|" << std::endl;
 
 
-    const std::string dataset_path = (argc > 1) ? argv[1] : "heart.csv";
-    constexpr size_t EPOCHS = 3000;
+    const std::string dataset_path = (argc > 1) ? argv[1] : "C:/Users/josei/CLionProjects/proyecto-final-2025-2-the_frontiend/heart.csv";
+
+    // Parámetros a ajustar en cada entrenamiento
+    constexpr size_t EPOCHS = 5000;
     constexpr size_t BATCH_SIZE = 32;
     constexpr double LEARNING_RATE = 0.01;
     constexpr double TEST_RATIO = 0.3;
@@ -80,8 +82,8 @@ int train(int argc, char* argv[]) {
 
 
     auto init_weights = [](auto& W) {
-        double scale = 0.5;
         for (auto& w : W) {
+            constexpr double scale = 0.5;
             w = (static_cast<double>(rand()) / RAND_MAX - 0.5) * 2.0 * scale;
         }
     };
@@ -97,7 +99,7 @@ int train(int argc, char* argv[]) {
     nn.add_layer(std::make_unique<Dense<double>>(16, 1, init_weights, init_bias));
     nn.add_layer(std::make_unique<Sigmoid<double>>());
 
-    std::cout << "Architecture: Input(13) → Dense(32) → ReLU → Dense(16) → ReLU → Dense(1) → Sigmoid" << std::endl;
+    std::cout << "Architecture: Input(13) -> Dense(32) -> ReLU -> Dense(16) -> ReLU -> Dense(1) -> Sigmoid" << std::endl;
     std::cout << "Total parameters: ~600" << std::endl;
 
     print_header("TRAINING");
@@ -155,16 +157,17 @@ int train(int argc, char* argv[]) {
     std::cout << "\nLiterature Benchmark: 85-93% accuracy" << std::endl;
 
     if (test_metrics.accuracy >= 0.80) {
-        std::cout << "\n✓ Model performance is competitive with literature!" << std::endl;
+        std::cout << "\n Model performance is competitive with literature!" << std::endl;
     } else if (test_metrics.accuracy >= 0.70) {
-        std::cout << "\n⚠ Model performance is reasonable but could be improved." << std::endl;
+        std::cout << "\n Model performance is reasonable but could be improved." << std::endl;
         std::cout << "  Try: more epochs, different architecture, or Adam optimizer" << std::endl;
     } else {
-        std::cout << "\n✗ Model performance is below expected." << std::endl;
+        std::cout << "\n Model performance is below expected." << std::endl;
         std::cout << "  Suggestions: check data preprocessing, increase epochs, tune learning rate" << std::endl;
     }
 
-    std::cout << "\n╔════════════════════════════════════════════════════════╗" << std::endl;
-    std::cout << "║                    TRAINING COMPLETE                   ║" << std::endl;
-    std::cout << "╚════════════════════════════════════════════════════════╝" << std::endl;
+    std::cout << "\n|-----------------------------------------------------------|" << std::endl;
+    std::cout << "|                    TRAINING COMPLETE                        |" << std::endl;
+    std::cout << "|-------------------------------------------------------------|" << std::endl;
+    return 0;
 }

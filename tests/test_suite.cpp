@@ -7,13 +7,14 @@
 #include <cmath>
 #include <iomanip>
 #include <random>
-#include "layers/tensor.h"
-#include "layers/neural_network.h"
-#include "layers/nn_activation.h"
-#include "layers/nn_loss.h"
-#include "optimizer/nn_optimizer.h"
-#include "layers/nn_dense.h"
-#include "tests/heart_train_disease.cpp"
+#include "include/tensor.h"
+#include "include/neural_network.h"
+#include "include/nn_activation.h"
+#include "include/nn_loss.h"
+#include "include/nn_optimizer.h"
+#include "include/nn_dense.h"
+#include "heart_train_disease.cpp"
+#include <cstring>
 
 using utec::neural_network::NeuralNetwork;
 using utec::neural_network::Dense;
@@ -391,6 +392,13 @@ void test_suite () {
 }
 
 int main() {
-    train(1, ('1', '2'));
+    char **argv = new char *[2];
+    argv[0] = new char[strlen("./heart_train_disease") + 1];
+    strcpy(argv[0], "./heart_train_disease");
+    argv[1] = new char[strlen("C:/Users/josei/CLionProjects/proyecto-final-2025-2-the_frontiend/heart.csv") + 1];
+    strcpy(argv[1], "C:/Users/josei/CLionProjects/proyecto-final-2025-2-the_frontiend/heart.csv");
+
+    train(2, argv);
+    delete[] argv;
     return 0;
 }

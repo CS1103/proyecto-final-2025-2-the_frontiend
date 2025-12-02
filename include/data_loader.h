@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <cmath>
 #include <random>
-#include "layers/tensor.h"
+#include "include/tensor.h"
 #include <iostream>
 
 namespace utec::data {
