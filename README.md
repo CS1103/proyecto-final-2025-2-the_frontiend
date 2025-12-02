@@ -45,8 +45,8 @@
    git clone https://github.com/proyecto-final-2025-2-the_frontiend.git
    cd proyecto-final-2025-2-the_frontiend
    mkdir build && cd build
-   cmake ..
-   make
+   cmake .. -DCMAKE_BUILD_TYPE=Release
+   make j4
    ```
 ---
 
@@ -211,4 +211,6 @@ Justificación:
 
 ### 7. Bibliografía
 
-> *Actualizar con bibliografia utilizada, al menos 4 referencias bibliograficas y usando formato IEEE de referencias bibliograficas.*
+Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. Nature, 323(6088), 533-536. https://doi.org/10.1038/323533a0
+
+
