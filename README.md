@@ -208,7 +208,7 @@ Justificación:
 | Tarea                     | Miembro  | Rol                                            |
 | ------------------------- | -------- | ---------------------------------------------- |
 | Investigación teórica     | José Ignacio Benalcázar Ferro | Documentar bases teóricas |
-| Diseño de la arquitectura | José Ignacio Benalcázar Ferro | UML y esquemas de clases  |
+| Diseño de la arquitectura | José Ignacio Benalcázar Ferro | Estructuración de clases  |
 | Implementación del modelo | José Ignacio Benalcázar Ferro | Código C++ de la NN       |
 | Pruebas y benchmarking    | José Ignacio Benalcázar Ferro | Generación de métricas    |
 | Documentación y demo      | José Ignacio Benalcázar Ferro | Tutorial y video demo     |
