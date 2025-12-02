@@ -35,12 +35,16 @@
    * Eigen 3.4
    * wget (Para la descarga del dataset)
 3. **Instalación**:
-    Paso 1: Descargar el dataset
+    Paso 1: Descargar el dataset desde un repositorio público
    ```bash
-   chmod +x download_dataset.sh 
-   ./download_dataset.sh
+   wget https://raw.githubusercontent.com/sharmaroshan/Heart-UCI-Dataset/master/heart.csv
    ````
-    Paso 2: Compilar el proyecto 
+   Paso 2: Verificar el dataset
+   ```bash
+   wc -l heart.csv  # Debe mostrar ~304 líneas (303 datos + 1 header)
+   head -1 heart.csv  # Debe mostrar los nombres de columnas
+   ````
+    Paso 3: Compilar el proyecto 
    ```bash
    git clone https://github.com/proyecto-final-2025-2-the_frontiend.git
    cd proyecto-final-2025-2-the_frontiend
@@ -212,5 +216,8 @@ Justificación:
 ### 7. Bibliografía
 
 Rumelhart, D. E., Hinton, G. E., & Williams, R. J. (1986). Learning representations by back-propagating errors. Nature, 323(6088), 533-536. https://doi.org/10.1038/323533a0
+Cong, S., & Zhou, Y. (2023). A review of convolutional neural network architectures and their optimizations. Artificial Intelligence Review, 56(3), 1905-1969. https://doi.org/10.1007/s10462-022-10213-5
+Bredikhin, A. I. (2019). Training algorithms for convolutional neural networks. Yugra State University Bulletin, 15(1), 41-54. https://doi.org/10.17816/byusu20190141-54
+Galván, E., & Mooney, P. (2021). Neuroevolution in deep neural networks: Current trends and future challenges. IEEE Transactions on Artificial Intelligence, 2(6), 476-493. https://doi.org/10.1109/TAI.2021.3067574
 
 
